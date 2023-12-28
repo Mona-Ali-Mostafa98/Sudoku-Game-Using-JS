@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 // Array of image sources
-const imageSources = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
+const imageSources = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg'];
 
 // Function to shuffle an array using Fisher-Yates algorithm
 function shuffleArray(array) {
@@ -258,11 +258,12 @@ function createImageArray(imgNumber) {
         return [];
     }
 
-    const validateImageSources = imageSources.slice(0, imgNumber);
+    const validateImageSources = imageSources.slice(0, imgNumber * imgNumber);
     const totalImages = imgNumber * imgNumber;
 
     // Duplicate and shuffle the validated image sources to ensure enough unique images
-    const duplicatedImages = [...validateImageSources, ...validateImageSources, ...validateImageSources, ...validateImageSources];
+    const duplicatedImages = [...validateImageSources, ...validateImageSources.slice(0, totalImages - validateImageSources.length)];
+
     shuffleArray(duplicatedImages);
 
     // Create a 2D array
@@ -270,6 +271,20 @@ function createImageArray(imgNumber) {
     for (let i = 0; i < imgNumber; i++) {
         const row = duplicatedImages.slice(i * imgNumber, (i + 1) * imgNumber);
         imageArray.push(row);
+    }
+
+    // Ensure each number appears only once in each column
+    for (let j = 0; j < imgNumber; j++) {
+        const column = imageArray.map(row => row[j]);
+        const uniqueColumn = Array.from(new Set(column));
+
+        // If the column doesn't have enough unique numbers, recreate it
+        while (uniqueColumn.length < imgNumber) {
+            shuffleArray(duplicatedImages);
+            for (let i = 0; i < imgNumber; i++) {
+                imageArray[i][j] = duplicatedImages[i + j * imgNumber];
+            }
+        }
     }
 
     return imageArray;
