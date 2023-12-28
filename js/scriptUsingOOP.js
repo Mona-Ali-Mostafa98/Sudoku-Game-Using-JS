@@ -152,7 +152,7 @@ class SudokuGame {
 
         if (totalMilliseconds < 0) {
             this.stopGame();
-            this.showSweetAlert('Time is up! Game Over', 'Please enter a valid name with only 5 characters.', 'error');
+            this.showSweetAlert('Time is up! Game Over', 'Play again or leave game', 'error');
         }
     }
 

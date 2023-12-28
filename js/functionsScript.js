@@ -27,19 +27,17 @@ function showSweetAlert(title, message, icon) {
         showConfirmButton: true,
         showCancelButton: true,
         showCloseButton: true,
-        confirmButtonText: "Yes",
-        cancelButtonText: "No",
+        confirmButtonText: "Go To Home Page",
+        cancelButtonText: "Play Again",
 
         iconColor: "#bf74bf",
         confirmButtonColor: "#911489",
         cancelButtonColor: "#c03c3f",
     }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-            });
+            window.location.href = 'home.html';
+        } else {
+            window.location.href = 'game.html';
         }
     });
 }
