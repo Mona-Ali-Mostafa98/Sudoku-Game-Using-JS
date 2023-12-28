@@ -258,33 +258,22 @@ function createImageArray(imgNumber) {
         return [];
     }
 
-    const validateImageSources = imageSources.slice(0, imgNumber * imgNumber);
+    const validateImageSources = imageSources.slice(0, imgNumber);
     const totalImages = imgNumber * imgNumber;
 
     // Duplicate and shuffle the validated image sources to ensure enough unique images
-    const duplicatedImages = [...validateImageSources, ...validateImageSources.slice(0, totalImages - validateImageSources.length)];
-
+    const duplicatedImages = [...validateImageSources, ...validateImageSources, ...validateImageSources, ...validateImageSources];
     shuffleArray(duplicatedImages);
 
     // Create a 2D array
     const imageArray = [];
     for (let i = 0; i < imgNumber; i++) {
-        const row = duplicatedImages.slice(i * imgNumber, (i + 1) * imgNumber);
+        let row = [...duplicatedImages];
+
+        // Shuffle the row to ensure a random order
+        shuffleArray(row);
+
         imageArray.push(row);
-    }
-
-    // Ensure each number appears only once in each column
-    for (let j = 0; j < imgNumber; j++) {
-        const column = imageArray.map(row => row[j]);
-        const uniqueColumn = Array.from(new Set(column));
-
-        // If the column doesn't have enough unique numbers, recreate it
-        while (uniqueColumn.length < imgNumber) {
-            shuffleArray(duplicatedImages);
-            for (let i = 0; i < imgNumber; i++) {
-                imageArray[i][j] = duplicatedImages[i + j * imgNumber];
-            }
-        }
     }
 
     return imageArray;
