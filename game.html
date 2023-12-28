@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sudoku Game With Images</title>
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Add this link to include SweetAlert CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+<p class="alert" id="alertMessage">
+    <span class="closeBtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong></strong>
+</p>
+
+<div class="app">
+    <h1>Sudoku Game</h1>
+
+    <div class="game">
+        <div class="info">
+            <div class="imgGuide">
+                <div class="image-box" id="img_box_1">
+                    <img alt="" src="images/1.jpg">
+                    <p>1</p>
+                </div>
+                <div class="image-box" id="img_box_2">
+                    <img alt="" src="images/2.jpg">
+                    <p>2</p>
+                </div>
+                <div class="image-box" id="img_box_3">
+                    <img alt="" src="images/3.jpg">
+                    <p>3</p>
+                </div>
+                <div class="image-box" id="img_box_4">
+                    <img alt="" src="images/4.jpg">
+                    <p>4</p>
+                </div>
+            </div>
+            <button class="start" id="start" onclick="startOrStopTimer()">Start</button>
+
+            <div class="message">
+                <p>
+                    Time:
+                    <span class="time" id="timer">00:00</span>
+                </p>
+
+                <p>
+                    Player:
+                    <span class="player-name"></span>
+                </p>
+
+                <p>
+                    Score:
+                    <span class="score">100</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="digits" id="digits"></div>
+    </div>
+</div>
+<!-- Add these scripts to include SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script src="js/functionsScript.js"></script>
+<!--<script src="js/homeScript.js"></script>-->
+<script src="js/gameScript.js"></script>
+</body>
+</html>

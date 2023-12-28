@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sudoku Game With Images</title>
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Add this link to include SweetAlert CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+<p class="alert" id="alertMessage">
+    <span class="closeBtn" onclick="this.parentElement.style.display='none';">&times;</span>
+    <strong></strong>
+</p>
+<div class="app">
+    <h1>Sudoku Game</h1>
+
+    <div class="select-level">
+        <div class="form-field">
+            <input class="input-text" id="user_name" name="user_name" placeholder="  Enter Your Name" required
+                   type="text">
+        </div>
+        <div class="levels">
+            <input checked="checked" id="easy" name="level" type="radio" value="2"/>
+            <label for="easy">Easy</label>
+
+            <input id="normal" name="level" type="radio" value="3"/>
+            <label for="normal">Normal</label>
+
+            <input id="hard" name="level" type="radio" value="4"/>
+            <label for="hard">Hard</label>
+        </div>
+        <button class="play" disabled id="playButton">Play</button>
+    </div>
+</div>
+<!-- Add these scripts to include SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<script src="js/functionsScript.js"></script>
+<script src="js/homeScript.js"></script>
+</body>
+</html>
